@@ -23,6 +23,8 @@
         href="{{ asset('css/style.css') }}">
     <link rel="stylesheet"
         href="{{ asset('css/components.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('css/custom.css') }}">
 
     <!-- Start GA -->
     <script async
@@ -57,6 +59,8 @@
             @include('components.footer')
         </div>
     </div>
+
+    <button id="toggle-dark-mode">Toggle Dark Mode</button>
 
     <!-- General JS Scripts -->
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>

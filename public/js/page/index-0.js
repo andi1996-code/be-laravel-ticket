@@ -10,10 +10,10 @@ var myChart = new Chart(statistics_chart, {
       label: 'Statistics',
       data: [640, 387, 530, 302, 430, 270, 488],
       borderWidth: 5,
-      borderColor: '#6777ef',
+      borderColor: '#FFB347',
       backgroundColor: 'transparent',
       pointBackgroundColor: '#fff',
-      pointBorderColor: '#6777ef',
+      pointBorderColor: '#FFB347',
       pointRadius: 4
     }]
   },
@@ -39,6 +39,102 @@ var myChart = new Chart(statistics_chart, {
       }]
     },
   }
+});
+
+var ctx = document.getElementById("salesChart").getContext('2d');
+var salesChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: salesData.week.labels,
+        datasets: [{
+            label: 'Sales',
+            data: salesData.week.data,
+            borderWidth: 2,
+            backgroundColor: 'rgba(63,82,227,.8)',
+            borderColor: 'transparent',
+            pointBackgroundColor: 'transparent',
+            pointBorderColor: 'transparent',
+            pointRadius: 3
+        }]
+    },
+    options: {
+        legend: {
+            display: false
+        },
+        scales: {
+            yAxes: [{
+                gridLines: {
+                    drawBorder: false,
+                    color: '#f2f2f2',
+                },
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 150
+                }
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
+        },
+    }
+});
+
+var ctx = document.getElementById('bestSellingProductsChart').getContext('2d');
+var bestSellingProductsChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: bestSellingProductsData.labels,
+        datasets: [{
+            label: 'Best-Selling Products',
+            data: bestSellingProductsData.data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return tooltipItem.label + ': ' + tooltipItem.raw + ' sales';
+                    }
+                }
+            }
+        }
+    }
+});
+
+document.getElementById('weekBtn').addEventListener('click', function() {
+    salesChart.data.labels = salesData.week.labels;
+    salesChart.data.datasets[0].data = salesData.week.data;
+    salesChart.update();
+});
+
+document.getElementById('monthBtn').addEventListener('click', function() {
+    salesChart.data.labels = salesData.month.labels;
+    salesChart.data.datasets[0].data = salesData.month.data;
+    salesChart.update();
 });
 
 $('#visitorMap').vectorMap(

@@ -11,7 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'transaction_time',
-        'total_price',
+        'total_price', // Ensure this column is used for total revenue
         'total_item',
         'payment_amount',
         'cashier_id',
